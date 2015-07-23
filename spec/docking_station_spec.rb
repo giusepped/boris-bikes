@@ -27,7 +27,7 @@ describe DockingStation do
     it "release bike only if working, otherwise raise an error" do
       bike = double :bike, working?: false
       subject.dock bike
-      expect{subject.release_bike}.to raise_error "Bike is broken"
+      expect{subject.release_bike}.to raise_error "No bikes available"
     end
   end
 end

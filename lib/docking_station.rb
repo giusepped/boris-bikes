@@ -10,13 +10,11 @@ class DockingStation
   end
 
   def release_bike
-    raise "No bikes available" if empty?
-    bike = @bikes.pop
-    if bike.working?
-      bike
-    else
-      raise "Bike is broken"
-    end
+    @temp = @bikes.select {|bike| bike.working?}
+    raise "No bikes available" if @temp.empty?
+    bike_to_release = @temp.pop
+    @bikes.delete(bike_to_release)
+    bike_to_release
   end
 
   def dock bike
