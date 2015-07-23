@@ -10,6 +10,11 @@ describe DockingStation do
     bike = subject.release_bike
     expect(bike).to be_working
   end
+  it "only accepts bikes up to a max capacity" do
+    subject.capacity.times {subject.dock Bike.new}
+    expect{subject.dock Bike.new}.to raise_error "Station is full"
+  end
+
 
   describe "#release_bike" do
     it "release bike raises an error" do
