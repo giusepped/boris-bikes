@@ -10,7 +10,7 @@ describe DockingStation do
   end
 
   it 'releases working bikes' do
-    subject.dock Bike.new
+    subject.dock double :bike, working?: true
     bike = subject.release_bike
     expect(bike).to be_working
   end
@@ -25,8 +25,7 @@ describe DockingStation do
       expect{subject.release_bike}.to raise_error "No bikes available"
     end
     it "release bike only if working, otherwise raise an error" do
-      bike = Bike.new
-      bike.report_broken
+      bike = double :bike, working?: false
       subject.dock bike
       expect{subject.release_bike}.to raise_error "Bike is broken"
     end
