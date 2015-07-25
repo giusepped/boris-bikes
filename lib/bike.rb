@@ -1,5 +1,5 @@
-class Bike
 
+class Bike
   def initialize
     @working = true
   end
@@ -15,6 +15,4 @@ class Bike
   def broken?
     !@working
   end
-
-
 end

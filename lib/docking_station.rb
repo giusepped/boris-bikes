@@ -10,16 +10,16 @@ class DockingStation
   end
 
   def release_bike
-    @temp = @bikes.select {|bike| bike.working?}
-    raise "No bikes available" if @temp.empty?
+    @temp = @bikes.select { |bike| bike.working? }
+    fail 'No bikes available' if @temp.empty?
     bike_to_release = @temp.pop
     @bikes.delete(bike_to_release)
     bike_to_release
   end
 
-  def dock bike
+  def dock(bike)
     if full?
-      raise "Station is full"
+      fail 'Station is full'
     else
       @bikes.push bike
     end
@@ -32,5 +32,4 @@ class DockingStation
   def full?
     @bikes.size >= @capacity
   end
-
 end
